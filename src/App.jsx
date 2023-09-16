@@ -28,7 +28,7 @@ function App() {
     const fetchData = async () => {
       try {
         const url = 'https://newsapi.org/v2/everything?' +
-          'q=Weather&' +
+          'q=Boston Weather&' +
           'from=2023-09-15&' +
           'sortBy=popularity&' +
           'apiKey=628ee3d227de40e580292092be76b556';
@@ -57,7 +57,7 @@ function App() {
       {/* Display your map in a div */}
       <div style={{ display: "flex" }}>
         <div id="map" style={{ width: "45vw", height: "80vh" }}></div>
-        <div id="news" style={{ width: "45vw", backgroundColor: "brown" }}>
+        {/* <div id="news" style={{ width: "45vw", backgroundColor: "brown" }}>
           <h2>Weather News</h2>
 
           {newsData.slice(0, 5).map((article, index) => (
@@ -67,7 +67,7 @@ function App() {
               <a href={article.url} target="_blank" rel="noopener noreferrer">Read more</a>
             </div>
           ))}
-        </div>
+        </div> */}
 
       </div>
 
