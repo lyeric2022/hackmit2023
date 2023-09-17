@@ -7,6 +7,9 @@ function App() {
   const [newsData, setNewsData] = useState([]);
   const [userLocation, setUserLocation] = useState(null);
 
+  
+
+
   useEffect(() => { // Use useEffect for loading Google Maps
     const loader = new Loader({
       apiKey: "AIzaSyBsP92ccVO68avVSH6El_Ff6ogc-MPeem4",
