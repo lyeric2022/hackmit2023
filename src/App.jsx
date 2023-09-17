@@ -258,6 +258,23 @@ function App() {
       <div style={{ display: "flex" }}>
         <div id="map" style={{ width: "90vw", height: "90vh" }}></div>
       </div>
+      <div>
+        <h1>About the Project</h1>
+        <p></p>
+      </div>
+      <div>
+        <h1>About the Team</h1>
+        <div>
+          <img src="./connie.jpg"></img>
+        <p>
+          Elena is a sophomore student studying entrepreneurship at Babson College. She taught herself Python and Java and she likes creating Youtube and Newsletter content.
+        </p>
+        </div>
+        
+        <p>
+          Connie is a second year electrical engineering student with a CS minor at San Jose State University. She has experience in Arduino, Python, and a little but of web development.
+        </p>
+      </div>
     </div>
   );
 }
