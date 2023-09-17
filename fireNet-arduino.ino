@@ -36,7 +36,7 @@ const int sensorMin = 0;
 const int sensorMax = 1024;
 unsigned long previousMillis =0;
 const long interval = 120000;
-int id = 23;
+int lat = 23;
 
 
 
@@ -244,6 +244,8 @@ Serial.println("loop.");
 
   }else if(analogValue < 1023){
     Serial.println("Flame detected(analog)");
+    //sending fire message 
+    messageObject["FlameSensor"] =String(analogValue + "is on fire");
     digitalWrite(LED_PIN_RED, HIGH);
     digitalWrite(LED_PIN_GREEN,LOW);
     digitalWrite(LED_PIN_YELLOW,LOW);
@@ -279,4 +281,7 @@ Serial.println("loop.");
 
   
 }
+
+
+
 
