@@ -195,8 +195,15 @@ Serial.println("loop.");
 
   messageObject["Temperature"] =String((float)DHT11.temperature);
 
-  Serial.println("Station ID: ");
-  messageObject["Station"] = String(id);
+  Serial.println("Station: ");
+  messageObject["Station"] = "Station 20";
+
+  Serial.println("Latitude: ");
+  messageObject["lat"] = 42.3744;
+
+  Serial.println("Longitude: ");
+  messageObject["lon"]= 71.116943;
+
 
   
  
@@ -272,5 +279,4 @@ Serial.println("loop.");
 
   
 }
-
 
