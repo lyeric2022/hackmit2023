@@ -2,7 +2,7 @@
   "name": "hackmit2023",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
+  "type": "commonjs",
   "start": "set PORT=3006 && react-scripts start",
   "scripts": {
     "dev": "vite",

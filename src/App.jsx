@@ -3,6 +3,8 @@ import "./App.css";
 
 import { Loader } from "@googlemaps/js-api-loader";
 
+// var data;
+
 function App() {
   const [newsData, setNewsData] = useState([]);
   const [userLocation, setUserLocation] = useState(null);
@@ -24,6 +26,11 @@ function App() {
         zoom: 2,
       });
 
+      // const safeAreaMarker = new google.maps.Marker({
+      //   position: { lat: , lng: userLocation.lng },
+      //   title: "My Location",
+      // });
+
       // Add a new Marker component to the map and pass in the user's latitude and longitude as props.
       if (userLocation) {
         const marker = new google.maps.Marker({
@@ -32,7 +39,45 @@ function App() {
         });
 
         marker.setMap(map);
-        map.zoom = 10;
+        map.zoom = 14;
+      }
+
+      var burningAreas = {
+        // next step: theoretically get from the JSON but hardcoding it for now
+        location0: {
+          center: { lat: 42.365, lng: -71.1026 },
+          fire: "false",
+        },
+        location1: {
+          center: { lat: 42.3647, lng: -71.0940 },
+          fire: "true",
+        },
+      };
+
+      // Process the MQTT message as needed
+
+      // move to better place
+      for (const city in burningAreas) {
+        const burnedArea = new google.maps.Circle({
+          strokeColor: "#FF0000",
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: "#FF0000",
+          fillOpacity: 0.35,
+          map,
+          center: burningAreas[city].center,
+          radius: 200,
+        });
+        const willBurnArea = new google.maps.Circle({
+          strokeColor: "#FFA500",
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: "#FFA500",
+          fillOpacity: 0.35,
+          map,
+          center: burningAreas[city].center,
+          radius: 600,
+        });
       }
     });
   }, [userLocation]); // Add the userLocation state variable to the dependency array to ensure the map is re-rendered when the user's location changes.
@@ -66,16 +111,18 @@ function App() {
       // Handle incoming WebSocket messages (MQTT data)
       const data = JSON.parse(event.data);
       console.log(`Received message on topic ${data.topic}: ${data.message}`);
-      // Process the MQTT message as needed
-    };
 
-    ws.onclose = () => {
-      console.log("WebSocket disconnected");
-    };
+      const messageData = JSON.parse(data.message);
+      console.log(messageData.Fire);
 
-    return () => {
-      // Clean up WebSocket connection if needed
-      ws.close();
+      ws.onclose = () => {
+        console.log("WebSocket disconnected");
+      };
+
+      return () => {
+        // Clean up WebSocket connection if needed
+        ws.close();
+      };
     };
   }, []);
 
@@ -92,8 +139,35 @@ function App() {
       <div style={{ display: "flex" }}>
         <div id="map" style={{ width: "90vw", height: "90vh" }}></div>
       </div>
+
+      {/* Overlay Square with Text */}
+      <div
+        id="overlay"
+        className="overlay"
+        style={{
+          position: "absolute",
+          top: "690px", // Adjust the top position as needed
+          left: "90px", // Adjust the left position as needed
+          backgroundColor: "rgba(255, 255, 255, 0.7)",
+          padding: "10px",
+          border: "2px solid #333",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-start",
+        }}
+      >
+        <h3 style={{ fontSize: "18px", margin: "0", padding: "0" }}>
+          Suggested Locations
+        </h3>{" "}
+        {/* Adjust the font size as needed */}
+        <ol style={{ margin: "0", paddingLeft: "20px" }}>
+          <li style={{ textAlign: "left" }}>Charles River Esplanade</li>
+          <li style={{ textAlign: "left" }}>James P. Kelleher Rose Garden</li>
+          <li style={{ textAlign: "left" }}>Boston Common</li>
+          <li style={{ textAlign: "left" }}>Riverway I</li>
+        </ol>
+      </div>
     </div>
   );
 }
-
 export default App;
