@@ -20,7 +20,6 @@ function App() {
     loader.load().then(async () => {
       const { google } = window;
       const { Map } = await google.maps.importLibrary("maps");
-
       const map = new Map(document.getElementById("map"), {
         center: { lat: 42.3601, lng: -71.0942 },
         zoom: 2,
@@ -84,24 +83,92 @@ function App() {
 
           const burnedArea = new google.maps.Circle({
             strokeColor: "#FF0000",
-            strokeOpacity: 0.8,
+            strokeOpacity: 0.6,
             strokeWeight: 2,
             fillColor: "#FF0000",
-            fillOpacity: 0.35,
+            fillOpacity: 0.25,
             map,
             center: { lat: 42.365, lng: -71.1026 },
             radius: 200,
           });
           const willBurnArea = new google.maps.Circle({
             strokeColor: "#FFA500",
-            strokeOpacity: 0.8,
+            strokeOpacity: 0.6,
             strokeWeight: 2,
             fillColor: "#FFA500",
-            fillOpacity: 0.35,
+            fillOpacity: 0.25,
             map,
             center: { lat: 42.365, lng: -71.1026 },
             radius: 600,
           });
+
+          const safeMarker1 = new google.maps.Marker({
+            position: { lat: 42.3556, lng: -71.0789 },
+            title: "My Location",
+          });
+          safeMarker1.setIcon(
+            "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
+          );
+          safeMarker1.setMap(map);
+
+          const safeMarker2 = new google.maps.Marker({
+            position: { lat: 42.3551, lng: -71.0657 },
+            title: "My Location",
+          });
+
+          safeMarker2.setIcon(
+            "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
+          );
+          safeMarker2.setMap(map);
+
+          const safeMarker3 = new google.maps.Marker({
+            position: { lat: 42.342, lng: -71.0949 },
+            title: "My Location",
+          });
+
+          safeMarker3.setIcon(
+            "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
+          );
+          safeMarker3.setMap(map);
+
+          const safeMarker4 = new google.maps.Marker({
+            position: { lat: 42.3417, lng: -71.1099 },
+            title: "My Location",
+          });
+
+          safeMarker4.setIcon(
+            "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
+          );
+          safeMarker4.setMap(map);
+
+          <div
+            id="overlay"
+            className="overlay"
+            style={{
+              position: "absolute",
+              top: "690px", // Adjust the top position as needed
+              left: "90px", // Adjust the left position as needed
+              backgroundColor: "rgba(255, 255, 255, 0.7)",
+              padding: "10px",
+              border: "2px solid #333",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-start",
+            }}
+          >
+            <h3 style={{ fontSize: "18px", margin: "0", padding: "0" }}>
+              Suggested Locations
+            </h3>{" "}
+            {/* Adjust the font size as needed */}
+            <ol style={{ margin: "0", paddingLeft: "20px" }}>
+              <li style={{ textAlign: "left" }}>Charles River Esplanade</li>
+              <li style={{ textAlign: "left" }}>
+                James P. Kelleher Rose Garden
+              </li>
+              <li style={{ textAlign: "left" }}>Boston Common</li>
+              <li style={{ textAlign: "left" }}>Riverway I</li>
+            </ol>
+          </div>;
 
           // var burningAreas = {
           //   // next step: theoretically get from the JSON but hardcoding it for now
@@ -134,26 +201,26 @@ function App() {
 
       // console.log("outside Fire", Fire);
 
-      const burnedArea = new google.maps.Circle({
-        strokeColor: "#FF0000",
-        strokeOpacity: 0.8,
-        strokeWeight: 2,
-        fillColor: "#FF0000",
-        fillOpacity: 0.35,
-        map,
-        center: { lat: 42.3647, lng: -71.094 },
-        radius: 200,
-      });
-      const willBurnArea = new google.maps.Circle({
-        strokeColor: "#FFA500",
-        strokeOpacity: 0.8,
-        strokeWeight: 2,
-        fillColor: "#FFA500",
-        fillOpacity: 0.35,
-        map,
-        center: { lat: 42.3647, lng: -71.094 },
-        radius: 600,
-      });
+      // const burnedArea = new google.maps.Circle({
+      //   strokeColor: "#FF0000",
+      //   strokeOpacity: 0.8,
+      //   strokeWeight: 2,
+      //   fillColor: "#FF0000",
+      //   fillOpacity: 0.35,
+      //   map,
+      //   center: { lat: 42.3647, lng: -71.094 },
+      //   radius: 200,
+      // });
+      // const willBurnArea = new google.maps.Circle({
+      //   strokeColor: "#FFA500",
+      //   strokeOpacity: 0.8,
+      //   strokeWeight: 2,
+      //   fillColor: "#FFA500",
+      //   fillOpacity: 0.35,
+      //   map,
+      //   center: { lat: 42.3647, lng: -71.094 },
+      //   radius: 600,
+      // });
     });
   }, [userLocation]); // Add the userLocation state variable to the dependency array to ensure the map is re-rendered when the user's location changes.
 
@@ -190,34 +257,6 @@ function App() {
 
       <div style={{ display: "flex" }}>
         <div id="map" style={{ width: "90vw", height: "90vh" }}></div>
-      </div>
-
-      {/* Overlay Square with Text */}
-      <div
-        id="overlay"
-        className="overlay"
-        style={{
-          position: "absolute",
-          top: "690px", // Adjust the top position as needed
-          left: "90px", // Adjust the left position as needed
-          backgroundColor: "rgba(255, 255, 255, 0.7)",
-          padding: "10px",
-          border: "2px solid #333",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-start",
-        }}
-      >
-        <h3 style={{ fontSize: "18px", margin: "0", padding: "0" }}>
-          Suggested Locations
-        </h3>{" "}
-        {/* Adjust the font size as needed */}
-        <ol style={{ margin: "0", paddingLeft: "20px" }}>
-          <li style={{ textAlign: "left" }}>Charles River Esplanade</li>
-          <li style={{ textAlign: "left" }}>James P. Kelleher Rose Garden</li>
-          <li style={{ textAlign: "left" }}>Boston Common</li>
-          <li style={{ textAlign: "left" }}>Riverway I</li>
-        </ol>
       </div>
     </div>
   );
