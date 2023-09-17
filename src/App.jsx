@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'; // Import React and useEffect
-import './App.css';
+import React, { useState, useEffect } from "react"; // Import React and useEffect
+import "./App.css";
 
 import { Loader } from "@googlemaps/js-api-loader";
 
@@ -7,10 +7,8 @@ function App() {
   const [newsData, setNewsData] = useState([]);
   const [userLocation, setUserLocation] = useState(null);
 
-  
-
-
-  useEffect(() => { // Use useEffect for loading Google Maps
+  useEffect(() => {
+    // Use useEffect for loading Google Maps
     const loader = new Loader({
       apiKey: "AIzaSyBsP92ccVO68avVSH6El_Ff6ogc-MPeem4",
       version: "weekly",
@@ -30,7 +28,7 @@ function App() {
       if (userLocation) {
         const marker = new google.maps.Marker({
           position: { lat: userLocation.lat, lng: userLocation.lng },
-          title: 'My Location'
+          title: "My Location",
         });
 
         marker.setMap(map);
@@ -56,11 +54,39 @@ function App() {
     }
   }, []);
 
+  useEffect(() => {
+    // WebSocket connection
+    const ws = new WebSocket("ws://localhost:3000"); // Replace with your backend URL
+
+    ws.onopen = () => {
+      console.log("WebSocket connected");
+    };
+
+    ws.onmessage = (event) => {
+      // Handle incoming WebSocket messages (MQTT data)
+      const data = JSON.parse(event.data);
+      console.log(`Received message on topic ${data.topic}: ${data.message}`);
+      // Process the MQTT message as needed
+    };
+
+    ws.onclose = () => {
+      console.log("WebSocket disconnected");
+    };
+
+    return () => {
+      // Clean up WebSocket connection if needed
+      ws.close();
+    };
+  }, []);
+
   return (
     <div>
       <div className="title">
         <h1 id="firenet">FIRENET</h1>
-        <h3 id="description">Fire Identification, Real-time Evacuation, Navigation, Emergency Technology</h3>
+        <h3 id="description">
+          Fire Identification, Real-time Evacuation, Navigation, Emergency
+          Technology
+        </h3>
       </div>
 
       <div style={{ display: "flex" }}>
