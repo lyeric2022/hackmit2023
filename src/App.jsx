@@ -5,6 +5,7 @@ import { Loader } from "@googlemaps/js-api-loader";
 
 function App() {
   const [newsData, setNewsData] = useState([]);
+  const [userLocation, setUserLocation] = useState(null);
 
   useEffect(() => { // Use useEffect for loading Google Maps
     const loader = new Loader({
@@ -19,58 +20,49 @@ function App() {
 
       const map = new Map(document.getElementById("map"), {
         center: { lat: 42.3601, lng: -71.0942 },
-        zoom: 8,
+        zoom: 2,
       });
+
+      // Add a new Marker component to the map and pass in the user's latitude and longitude as props.
+      if (userLocation) {
+        const marker = new google.maps.Marker({
+          position: { lat: userLocation.lat, lng: userLocation.lng },
+          title: 'My Location'
+        });
+
+        marker.setMap(map);
+        map.zoom = 10;
+      }
     });
-  }, []); // Add an empty dependency array to run this effect only once
+  }, [userLocation]); // Add the userLocation state variable to the dependency array to ensure the map is re-rendered when the user's location changes.
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const url = 'https://newsapi.org/v2/everything?' +
-          'q=Boston Weather&' +
-          'from=2023-09-15&' +
-          'sortBy=popularity&' +
-          'apiKey=628ee3d227de40e580292092be76b556';
-
-        const response = await fetch(url);
-        const data = await response.json();
-        console.log(data);
-        setNewsData(data.articles); // Store the news data in state
-
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
+    // Get the user's geolocation
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          setUserLocation({ lat: latitude, lng: longitude });
+        },
+        (error) => {
+          console.error("Error getting geolocation:", error);
+        }
+      );
+    } else {
+      console.error("Geolocation is not available in this browser.");
+    }
   }, []);
 
   return (
     <div>
       <div className="title">
-        <h1>FIRENET</h1>
-        <h3>Fire Identification, Real-time Evacuation, Navigation, Emergency Technology</h3>
-
+        <h1 id="firenet">FIRENET</h1>
+        <h3 id="description">Fire Identification, Real-time Evacuation, Navigation, Emergency Technology</h3>
       </div>
 
-      {/* Display your map in a div */}
       <div style={{ display: "flex" }}>
-        <div id="map" style={{ width: "45vw", height: "80vh" }}></div>
-        {/* <div id="news" style={{ width: "45vw", backgroundColor: "brown" }}>
-          <h2>Weather News</h2>
-
-          {newsData.slice(0, 5).map((article, index) => (
-            <div key={index}>
-              <h3>{article.title}</h3>
-              <p>{article.description}</p>
-              <a href={article.url} target="_blank" rel="noopener noreferrer">Read more</a>
-            </div>
-          ))}
-        </div> */}
-
+        <div id="map" style={{ width: "90vw", height: "90vh" }}></div>
       </div>
-
     </div>
   );
 }
