@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"; // Import React and useEffec
 import "./App.css";
 
 import { Loader } from "@googlemaps/js-api-loader";
-
+var messageData;
 // var data;
 
 function App() {
@@ -42,43 +42,118 @@ function App() {
         map.zoom = 14;
       }
 
-      var burningAreas = {
-        // next step: theoretically get from the JSON but hardcoding it for now
-        location0: {
-          center: { lat: 42.365, lng: -71.1026 },
-          fire: "false",
-        },
-        location1: {
-          center: { lat: 42.3647, lng: -71.0940 },
-          fire: "true",
-        },
+      const ws = new WebSocket("ws://localhost:3000"); // Replace with your backend URL
+
+      ws.onopen = () => {
+        console.log("WebSocket connected");
       };
 
-      // Process the MQTT message as needed
+      // var fire = false;
+      ws.onmessage = (event) => {
+        // Handle incoming WebSocket messages (MQTT data)
+        const data = JSON.parse(event.data);
+        console.log(`Received message on topic ${data.topic}: ${data.message}`);
 
-      // move to better place
-      for (const city in burningAreas) {
-        const burnedArea = new google.maps.Circle({
-          strokeColor: "#FF0000",
-          strokeOpacity: 0.8,
-          strokeWeight: 2,
-          fillColor: "#FF0000",
-          fillOpacity: 0.35,
-          map,
-          center: burningAreas[city].center,
-          radius: 200,
-        });
-        const willBurnArea = new google.maps.Circle({
-          strokeColor: "#FFA500",
-          strokeOpacity: 0.8,
-          strokeWeight: 2,
-          fillColor: "#FFA500",
-          fillOpacity: 0.35,
-          map,
-          center: burningAreas[city].center,
-          radius: 600,
-        });
-      }
+        messageData = JSON.parse(data.message);
+
+        if (messageData.FlameSensor > 804) {
+          const burnedArea = new google.maps.Circle({
+            strokeColor: "#FF0000",
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: "#FF0000",
+            fillOpacity: 0,
+            map,
+            center: { lat: 42.365, lng: -71.1026 },
+            radius: 0,
+          });
+          const willBurnArea = new google.maps.Circle({
+            strokeColor: "#FFA500",
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: "#FFA500",
+            fillOpacity: 0,
+            map,
+            center: { lat: 42.365, lng: -71.1026 },
+            radius: 0,
+          });
+        }
+
+        if (messageData.FlameSensor <= 804) {
+          // fire = true;
+
+          const burnedArea = new google.maps.Circle({
+            strokeColor: "#FF0000",
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: "#FF0000",
+            fillOpacity: 0.35,
+            map,
+            center: { lat: 42.365, lng: -71.1026 },
+            radius: 200,
+          });
+          const willBurnArea = new google.maps.Circle({
+            strokeColor: "#FFA500",
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: "#FFA500",
+            fillOpacity: 0.35,
+            map,
+            center: { lat: 42.365, lng: -71.1026 },
+            radius: 600,
+          });
+
+          // var burningAreas = {
+          //   // next step: theoretically get from the JSON but hardcoding it for now
+          //   location0: {
+          //     center: { lat: 42.365, lng: -71.1026 },
+          //     fire: messageData.Fire,
+          //   },
+          //   location1: {
+          //     center: { lat: 42.3657, lng: -71.0824 },
+          //     fire: "true",
+          //   },
+          // };
+
+          // Process the MQTT message as needed
+
+          // move to better place
+        }
+
+        console.log(messageData.Fire);
+
+        ws.onclose = () => {
+          console.log("WebSocket disconnected");
+        };
+
+        return () => {
+          // Clean up WebSocket connection if needed
+          ws.close();
+        };
+      };
+
+      // console.log("outside Fire", Fire);
+
+      const burnedArea = new google.maps.Circle({
+        strokeColor: "#FF0000",
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: "#FF0000",
+        fillOpacity: 0.35,
+        map,
+        center: { lat: 42.3647, lng: -71.094 },
+        radius: 200,
+      });
+      const willBurnArea = new google.maps.Circle({
+        strokeColor: "#FFA500",
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: "#FFA500",
+        fillOpacity: 0.35,
+        map,
+        center: { lat: 42.3647, lng: -71.094 },
+        radius: 600,
+      });
     });
   }, [userLocation]); // Add the userLocation state variable to the dependency array to ensure the map is re-rendered when the user's location changes.
 
@@ -99,32 +174,9 @@ function App() {
     }
   }, []);
 
-  useEffect(() => {
-    // WebSocket connection
-    const ws = new WebSocket("ws://localhost:3000"); // Replace with your backend URL
-
-    ws.onopen = () => {
-      console.log("WebSocket connected");
-    };
-
-    ws.onmessage = (event) => {
-      // Handle incoming WebSocket messages (MQTT data)
-      const data = JSON.parse(event.data);
-      console.log(`Received message on topic ${data.topic}: ${data.message}`);
-
-      const messageData = JSON.parse(data.message);
-      console.log(messageData.Fire);
-
-      ws.onclose = () => {
-        console.log("WebSocket disconnected");
-      };
-
-      return () => {
-        // Clean up WebSocket connection if needed
-        ws.close();
-      };
-    };
-  }, []);
+  // useEffect(() => {
+  //   // WebSocket connection
+  // }, []);
 
   return (
     <div>
