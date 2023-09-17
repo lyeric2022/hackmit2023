@@ -255,7 +255,8 @@ function App() {
   return (
     <div>
       <div className="title">
-        <h1 id="firenet">FIRENET</h1>
+        <h1 id="firenet" style={{ color: '#FFFFFF' }}>FireNET</h1>
+        <h1 id="firenet" style={{ color: '#fa6436', marginTop: '-88px' }}>FireNET</h1>
         <h3 id="description">
           Fire Identification, Real-time Evacuation, Navigation, Emergency
           Technology
@@ -263,10 +264,10 @@ function App() {
       </div>
 
       <div style={{ display: "flex" }}>
-        <div id="map" style={{ width: "90vw", height: "90vh" }}></div>
+        <div id="map" style={{ width: "90vw", height: "90vh", borderRadius: '10px'}}></div>
       </div>
-      <div style={{ backgroundColor: 'darkBrown', padding: '1vw', marginTop: '2vw', borderRadius: '10px'}}>
-        <h1>About the Project</h1>
+      <div style={{ backgroundColor: '#2f2f2f', padding: '1vw', marginTop: '2vw', borderRadius: '10px' }}>
+        <h1 style={{ color: '#fa6436' }}>About the Project</h1>
         <p>
           Every year, more than 35 thousand cases of wildfire occur in the US. Recently, the severe Maui wildfire caused 79 people to lose their lives, with at least 31 people missing.
         </p>
@@ -288,37 +289,39 @@ function App() {
         <p>
           Witnessing the detrimental effects of the wildfires that have happened in the past, we knew that we have to come up with a solution to mitigate the impact it has on people. From detection to evacuation, FireNet brings more safety and security to everyone’s lives.</p>
       </div>
-      <h1>About the Team</h1>
+      <div style={{borderRadius: '10px', backgroundColor: '#2f2f2f'}}>
+        <h1 style={{ color: '#fa6436', paddingTop: '3vh'}}>About the Team</h1>
 
-      <div style={{ display: 'flex', margin: 'auto', alignItems: 'center' }}>
-        <div style={{ width: '19vw', backgroundColor: 'grey', padding: '1vw', margin: '1vw', borderRadius: '10px' }}>
-          <img src={connie} style={{ width: '19vw' }} alt="Connie" />
-          <p>
-            Elena is a sophomore student studying entrepreneurship at Babson College. She taught herself Python and Java and she likes creating Youtube and Newsletter content.
-          </p>
+        <div style={{ display: 'flex', margin: 'auto', alignItems: 'center', justifyContent: 'center' }}>
+          <div style={{ width: '19vw', backgroundColor: 'grey', padding: '1vw', margin: '1vw', borderRadius: '10px' }}>
+            <img src={connie} style={{ width: '19vw' }} alt="Connie" />
+            <p>
+              Elena is a sophomore student studying entrepreneurship at Babson College. She taught herself Python and Java and she likes creating Youtube and Newsletter content.
+            </p>
+          </div>
+
+          <div style={{ width: '19vw', backgroundColor: 'grey', padding: '1vw', margin: '1vw', borderRadius: '10px' }}>
+            <img src={elena} style={{ width: '19vw' }} alt="Elena" />
+            <p>
+              Connie is a second year electrical engineering student with a CS minor at San Jose State University. She has experience in Arduino, Python, and a little but of web development.
+            </p>
+          </div>
+
+          <div style={{ width: '19vw', backgroundColor: 'grey', padding: '1vw', margin: '1vw', borderRadius: '10px' }}>
+            <img src={harsh} style={{ width: '19vw' }} alt="Harsh" />
+            <p>
+              Harsh is a Penn State sophomore who juggles Comp Sci, Economics, and a dash of Engineering Entrepreneurship. When Harsh is not coding or hiking, they are probably debating if the Matrix is an economic model. 🤓🛸
+            </p>
+          </div>
+
+          <div style={{ width: '19vw', backgroundColor: 'grey', padding: '1vw', margin: '1vw', borderRadius: '10px' }}>
+            <img src={eric} style={{ width: '19vw' }} alt="Eric" />
+            <p>
+              Eric is a second-year at Cal State Fullerton, studying Computer Science and Economics. In his free time, he likes to watch video essays, ice-skate, and drink matcha :D.
+            </p>
+          </div>
+
         </div>
-
-        <div style={{ width: '19vw', backgroundColor: 'grey', padding: '1vw', margin: '1vw', borderRadius: '10px' }}>
-          <img src={elena} style={{ width: '19vw' }} alt="Elena" />
-          <p>
-            Connie is a second year electrical engineering student with a CS minor at San Jose State University. She has experience in Arduino, Python, and a little but of web development.
-          </p>
-        </div>
-
-        <div style={{ width: '19vw', backgroundColor: 'grey', padding: '1vw', margin: '1vw', borderRadius: '10px' }}>
-          <img src={harsh} style={{ width: '19vw' }} alt="Harsh" />
-          <p>
-            Harsh is a Penn State sophomore who juggles Comp Sci, Economics, and a dash of Engineering Entrepreneurship. When Harsh is not coding or hiking, they are probably debating if the Matrix is an economic model. 🤓🛸
-          </p>
-        </div>
-
-        <div style={{ width: '19vw', backgroundColor: 'grey', padding: '1vw', margin: '1vw', borderRadius: '10px' }}>
-          <img src={eric} style={{ width: '19vw' }} alt="Eric" />
-          <p>
-            Eric is a second-year at Cal State Fullerton, studying Computer Science and Economics. In his free time, he likes to watch video essays, ice-skate, and drink matcha :D.
-          </p>
-        </div>
-
       </div>
     </div>
   );
