@@ -2,6 +2,13 @@ import React, { useState, useEffect } from "react"; // Import React and useEffec
 import "./App.css";
 
 import { Loader } from "@googlemaps/js-api-loader";
+
+import connie from "./assets/connie.jpg"
+import elena from "./assets/elena.jpg"
+import harsh from "./assets/harsh.jpg"
+import eric from "./assets/eric.jpg"
+
+
 var messageData;
 // var data;
 
@@ -258,22 +265,60 @@ function App() {
       <div style={{ display: "flex" }}>
         <div id="map" style={{ width: "90vw", height: "90vh" }}></div>
       </div>
-      <div>
+      <div style={{ backgroundColor: 'darkBrown', padding: '1vw', marginTop: '2vw', borderRadius: '10px'}}>
         <h1>About the Project</h1>
-        <p></p>
+        <p>
+          Every year, more than 35 thousand cases of wildfire occur in the US. Recently, the severe Maui wildfire caused 79 people to lose their lives, with at least 31 people missing.
+        </p>
+        <p>
+          We’re team FireNet. We accurately detect real-time wildfires and evacuate people safely.
+        </p>
+        <p>
+          We will install fire detector sensors and install them 3 miles apart around areas in high-risk of forest fires.
+        </p>
+        <p>
+          Any value detected from the flame sensor above 1023 micro-amps is in the safety green zone. The range between 804-1023 micro-amps will make the light turn from green to yellow because it is in the fire hazard warning zone. When the sensor unit detects fire under 804 micro-amps, it will beep for 15 second intervals over 2 minutes as the light turns from green to red. Our web app displays the estimated area of wildfire, and people within half a mile radius around it will be notified to evacuate.
+        </p>
+        <p>
+          To guide people to a safe destination, we have suggested locations indicated on the web app.
+        </p>
+        <p>
+          With the touch of a button, people get redirected from the web app to Google maps, and are ensured to smoothly relocate to an appropriate location.
+        </p>
+        <p>
+          Witnessing the detrimental effects of the wildfires that have happened in the past, we knew that we have to come up with a solution to mitigate the impact it has on people. From detection to evacuation, FireNet brings more safety and security to everyone’s lives.</p>
       </div>
-      <div>
-        <h1>About the Team</h1>
-        <div>
-          <img src="./connie.jpg"></img>
-        <p>
-          Elena is a sophomore student studying entrepreneurship at Babson College. She taught herself Python and Java and she likes creating Youtube and Newsletter content.
-        </p>
+      <h1>About the Team</h1>
+
+      <div style={{ display: 'flex', margin: 'auto', alignItems: 'center' }}>
+        <div style={{ width: '19vw', backgroundColor: 'grey', padding: '1vw', margin: '1vw', borderRadius: '10px' }}>
+          <img src={connie} style={{ width: '19vw' }} alt="Connie" />
+          <p>
+            Elena is a sophomore student studying entrepreneurship at Babson College. She taught herself Python and Java and she likes creating Youtube and Newsletter content.
+          </p>
         </div>
-        
-        <p>
-          Connie is a second year electrical engineering student with a CS minor at San Jose State University. She has experience in Arduino, Python, and a little but of web development.
-        </p>
+
+        <div style={{ width: '19vw', backgroundColor: 'grey', padding: '1vw', margin: '1vw', borderRadius: '10px' }}>
+          <img src={elena} style={{ width: '19vw' }} alt="Elena" />
+          <p>
+            Connie is a second year electrical engineering student with a CS minor at San Jose State University. She has experience in Arduino, Python, and a little but of web development.
+          </p>
+        </div>
+
+        <div style={{ width: '19vw', backgroundColor: 'grey', padding: '1vw', margin: '1vw', borderRadius: '10px' }}>
+          <img src={harsh} style={{ width: '19vw' }} alt="Harsh" />
+          <p>
+            Harsh is a Penn State sophomore who juggles Comp Sci, Economics, and a dash of Engineering Entrepreneurship. When Harsh is not coding or hiking, they are probably debating if the Matrix is an economic model. 🤓🛸
+          </p>
+        </div>
+
+        <div style={{ width: '19vw', backgroundColor: 'grey', padding: '1vw', margin: '1vw', borderRadius: '10px' }}>
+          <img src={eric} style={{ width: '19vw' }} alt="Eric" />
+          <p>
+            Eric is a second-year at Cal State Fullerton, studying Computer Science and Economics. In his free time, he likes to watch video essays, ice-skate, and drink matcha :D.
+          </p>
+        </div>
+
       </div>
     </div>
   );
