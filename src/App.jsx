@@ -255,7 +255,7 @@ function App() {
   return (
     <div>
       <div className="title">
-        <h1 id="firenet" style={{ color: '#FFFFFF' }}>FireNET</h1>
+        <h1 id="firenet" style={{ color: '#ffd900' }}>FireNET</h1>
         <h1 id="firenet" style={{ color: '#fa6436', marginTop: '-88px' }}>FireNET</h1>
         <h3 id="description">
           Fire Identification, Real-time Evacuation, Navigation, Emergency
