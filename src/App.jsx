@@ -7,6 +7,7 @@ import connie from "./assets/connie.jpg"
 import elena from "./assets/elena.jpg"
 import harsh from "./assets/harsh.jpg"
 import eric from "./assets/eric.jpg"
+import marina from "./assets/marina.jpg"
 
 
 var messageData;
@@ -264,7 +265,7 @@ function App() {
       </div>
 
       <div style={{ display: "flex" }}>
-        <div id="map" style={{ width: "90vw", height: "90vh", borderRadius: '10px'}}></div>
+        <div id="map" style={{ width: "90vw", height: "90vh", borderRadius: '10px' }}></div>
       </div>
       <div style={{ backgroundColor: '#2f2f2f', padding: '1vw', marginTop: '2vw', borderRadius: '10px' }}>
         <h1 style={{ color: '#fa6436' }}>About the Project</h1>
@@ -289,35 +290,45 @@ function App() {
         <p>
           Witnessing the detrimental effects of the wildfires that have happened in the past, we knew that we have to come up with a solution to mitigate the impact it has on people. From detection to evacuation, FireNet brings more safety and security to everyone’s lives.</p>
       </div>
-      <div style={{borderRadius: '10px', backgroundColor: '#2f2f2f'}}>
-        <h1 style={{ color: '#fa6436', paddingTop: '3vh'}}>About the Team</h1>
+      <div style={{ borderRadius: '10px', backgroundColor: '#2f2f2f' }}>
+        <h1 style={{ color: '#fa6436', paddingTop: '3vh' }}>About the Team</h1>
 
         <div style={{ display: 'flex', margin: 'auto', alignItems: 'center', justifyContent: 'center' }}>
-          <div style={{ width: '19vw', backgroundColor: 'grey', padding: '1vw', margin: '1vw', borderRadius: '10px' }}>
-            <img src={connie} style={{ width: '19vw' }} alt="Connie" />
+          <div style={{ width: '16vw', backgroundColor: 'grey', padding: '1vw', margin: '1vw', borderRadius: '10px' }}>
+            <img src={connie} style={{ width: '16vw' }} alt="Connie" />
             <p>
               Elena is a sophomore student studying entrepreneurship at Babson College. She taught herself Python and Java and she likes creating Youtube and Newsletter content.
             </p>
           </div>
 
-          <div style={{ width: '19vw', backgroundColor: 'grey', padding: '1vw', margin: '1vw', borderRadius: '10px' }}>
-            <img src={elena} style={{ width: '19vw' }} alt="Elena" />
+          <div style={{ width: '16vw', backgroundColor: 'grey', padding: '1vw', margin: '1vw', borderRadius: '10px' }}>
+            <img src={elena} style={{ width: '16vw' }} alt="Elena" />
             <p>
               Connie is a second year electrical engineering student with a CS minor at San Jose State University. She has experience in Arduino, Python, and a little but of web development.
             </p>
           </div>
 
-          <div style={{ width: '19vw', backgroundColor: 'grey', padding: '1vw', margin: '1vw', borderRadius: '10px' }}>
-            <img src={harsh} style={{ width: '19vw' }} alt="Harsh" />
+          <div style={{ width: '16vw', backgroundColor: 'grey', padding: '1vw', margin: '1vw', borderRadius: '10px' }}>
+            <img src={harsh} style={{ width: '16vw' }} alt="Harsh" />
             <p>
               Harsh is a Penn State sophomore who juggles Comp Sci, Economics, and a dash of Engineering Entrepreneurship. When Harsh is not coding or hiking, they are probably debating if the Matrix is an economic model. 🤓🛸
             </p>
           </div>
+        </div>
 
-          <div style={{ width: '19vw', backgroundColor: 'grey', padding: '1vw', margin: '1vw', borderRadius: '10px' }}>
-            <img src={eric} style={{ width: '19vw' }} alt="Eric" />
+        <div style={{ display: 'flex', margin: 'auto', alignItems: 'center', justifyContent: 'center' }}>
+
+          <div style={{ width: '16vw', backgroundColor: 'grey', padding: '1vw', margin: '1vw', borderRadius: '10px' }}>
+            <img src={eric} style={{ width: '16vw' }} alt="Eric" />
             <p>
               Eric is a second-year at Cal State Fullerton, studying Computer Science and Economics. In his free time, he likes to watch video essays, ice-skate, and drink matcha :D.
+            </p>
+          </div>
+
+          <div style={{ width: '16vw', backgroundColor: 'grey', padding: '1vw', margin: '1vw', borderRadius: '10px' }}>
+            <img src={marina} style={{ width: '16vw' }} alt="Marina" />
+            <p>
+              Marina is a junior at MIT majoring in computer science (AI track). Other than developing websites and doing research in text-to-3D scene generation, she loves fencing, learning Chinese, and attempting to have a good sleep schedule!
             </p>
           </div>
 
